@@ -15,3 +15,7 @@ The Javascript example is here:
 
 https://github.com/passport/www.passportjs.org
 
+The local example is here (uses Express):
+
+https://github.com/passport/express-4.x-local-example
+
