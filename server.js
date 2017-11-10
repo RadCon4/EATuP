@@ -15,11 +15,14 @@ client.messages.create({
 
 var app = express();
 const PORT = process.env.PORT || 3000;
+const db = require('./models');
 
 app.get("/", function(req, res){
   res.send("welcome to the home page");
 })
 
-app.listen(PORT, function(){
- console.log("The server has connected");
-});
+db.sequelize.sync({force: false}).then(function(){
+  app.listen(PORT, function(){
+    console.log("The server has connected on " + PORT);
+  });
+})
