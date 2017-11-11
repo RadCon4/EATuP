@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "testedUser2",
-    "password": "passwordTest1",
+    "username": "mzojztfzqeb1t44h",
+    "password": "woxc0lt5dsuttc1j",
     "database": "eatUp",
-    "host": "127.0.0.1",
+    "host": "mna97msstjnkkp7h.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
