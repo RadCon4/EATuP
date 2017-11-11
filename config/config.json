@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "testedUser2",
+    "password": "passwordTest1",
+    "database": "eatUp",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "testedUser2",
+    "password": "passwordTest1",
+    "database": "eatUp",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "testedUser2",
+    "password": "passwordTest1",
+    "database": "eatUp",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
