@@ -1,17 +1,17 @@
 var express = require('express');
-var twilio = require('twilio');
+// var twilio = require('twilio');
 
-var accountSSID = null;
-var authToken = null;
+// var accountSSID = null;
+// var authToken = null;
 
-var client = twilio(accountSSID, authToken);
+// var client = twilio(accountSSID, authToken);
 
-client.messages.create({
-  body: 'This is a test from eatUp!',
-  to: '8177068356',
-  from: '+18722013712'
-})
-.then((message) => console.log(message.sid))
+// client.messages.create({
+//   body: 'This is a test from eatUp!',
+//   to: '8177068356',
+//   from: '+18722013712'
+// })
+// .then((message) => console.log(message.sid))
 
 var app = express();
 const PORT = process.env.PORT || 3000;
