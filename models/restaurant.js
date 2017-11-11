@@ -36,16 +36,6 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
-    Restaurant.belongsTo(models.States, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-    Restaurant.belongsTo(models.Categories, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
   };
   return Restaurant;
 };
