@@ -25,7 +25,7 @@ app.use(bp.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'))
 
 app.get("/", function(req, res){
-  res.send("welcome to the home page");
+  res.sendFile(path.join(__dirname, "public/index.html"));
 })
 
 db.sequelize.sync({force: false}).then(function(){
