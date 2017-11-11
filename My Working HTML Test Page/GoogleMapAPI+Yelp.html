@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+
+
+<title>Basic EatUP Test Page</title>
+    <!-- Google Maps and Places API -->
+
+       <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+    <!-- STYLE NOT NEEDED
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="http://api.eventful.com/js/api"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    
+    <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    function initGeolocation()
+    {
+            if( navigator.geolocation )
+            {
+              // Call getCurrentPosition with success and failure callbacks
+              navigator.geolocation.getCurrentPosition( success, fail );
+        }
+        else
+        {
+              alert("Sorry, your browser does not support geolocation services.");
+        }
+    }
+     var map;
+     function success(position)
+     {
+           // Define the coordinates as a Google Maps LatLng Object
+           var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+             console.log(position.coords.latitude);
+             console.log(position.coords.longitude);
+
+/*
+           // Prepare the map options
+           var mapOptions =
+          {
+                      zoom: 14,
+                      center: coords,
+                      mapTypeControl: false,
+                      navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+                      mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            // Create the map, and place it in the map_canvas div
+            map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+      
+      //search for schools within 1500 metres of our current location, and as a marker use school.png
+      placesRequest('Schools',coords,1500,['school'],'images/school.png');
+            // Place the initial marker
+            var marker = new google.maps.Marker({
+                      position: coords,
+                      map: map,
+                      title: "Your current location!"
+            }); */
+      
+        }
+        function fail()
+        {
+              // Could not obtain location
+        }
+    
+    //Request places from Google
+    /* function placesRequest(title,latlng,radius,types,icon)
+    {
+      //Parameters for our places request
+      var request = {
+        location: latlng,
+        radius: radius,
+        types: types
+      };
+      //Make the service call to google
+      var callPlaces = new google.maps.places.PlacesService(map);
+      callPlaces.search(request, function(results,status){
+        //trace what Google gives us back
+        $.each(results, function(i,place){
+          var placeLoc = place.geometry.location;
+           var thisplace = new google.maps.Marker({
+             map: map,
+             position: place.geometry.location,
+             icon: icon,
+             title: place.name
+           });
+        })
+      });
+    
+      
+    }
+    */
+    
+  
+        </script>
+</head>
+<body onload="initGeolocation();">
+    <div style="position:absolute; width:380px; height: 100%; overflow:auto; float:left; padding-left:10px; padding-right:10px;">
+         </div>
+    <!-- map div container -->
+
+<div class="container">
+
+
+      <div class="jumbotron" style="background-color: gray; color: black">
+        <h1 class="text-center">EATuP Trial Coding Page</h1>
+        <h3 class="text-center">Where....shall.....we eat?</h3>
+      </div>
+      <div id="testEatUp"></div>
+      <div class="row">
+      <br>
+      <div id="testGooglePlacesAPI"></div>
+        <div class="col-md-4">
+
+
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>Test Input</strong></h3>
+            </div>
+            <div class="panel-body" id="control">
+
+
+             <form id="location-form">
+                <div class="form-group">
+                   <h2 id="text-center">Location</h2>
+                  <input type="text" id="destination-input" class="form-control form-control-md">
+                </div>
+                <div class="form-group">
+                  <h2 id="text-center">Search Radius (miles)</h2>
+                  <input type="text" id="radius-input" class="form-control form-control-md">
+                </div>
+                <button type="submit" onclick="eventfulSearch()" class="btn btn-primary btn-block">Submit</button>
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+        <div class="col-md-4">
+
+<!-- this is the map div-->
+
+           <!-- <div id="map_canvas" style="height:500px; border-right: 1px solid #666666; border-bottom: 1px solid #666666; border-top: 1px solid #AAAAAA; border-left: 1px solid #AAAAAA;"></div>
+
+           -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+</body>
+</html>
