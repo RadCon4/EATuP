@@ -1,11 +1,6 @@
 module.exports = function(sequelize, DataTypes){
   var Users = sequelize.define("Users", {
-    // timestamps: false,
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    lastName: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -13,7 +8,7 @@ module.exports = function(sequelize, DataTypes){
       type: DataTypes.STRING,
       allowNull: false
     },
-    userPassword: {
+    password: {
       type: DataTypes.STRING,
       allowNull: false
     }
@@ -27,3 +22,5 @@ module.exports = function(sequelize, DataTypes){
 
   return Users;
 }
+// converted firstName and lastName to username --- Conrad
+// converted userPassword to password --- Conrad
