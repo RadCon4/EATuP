@@ -1,6 +1,8 @@
 var express = require('express');
 const path = require('path');
 const bp = require('body-parser');
+const routering = require('./controllers/router.js');
+
 // var twilio = require('twilio');
 
 // var accountSSID = null;
@@ -22,11 +24,9 @@ const db = require('./models');
 app.use(bp.json());
 app.use(bp.urlencoded({extended: true}));
 
-app.use(express.static(__dirname + '/public'))
-
-app.get("/", function(req, res){
-  res.sendFile(path.join(__dirname, "public/index.html"));
-})
+app.use(express.static(__dirname + '/public'));
+app.use("/", routering)
+app.use("/add", routering);
 
 db.sequelize.sync({force: false}).then(function(){
   app.listen(PORT, function(){
