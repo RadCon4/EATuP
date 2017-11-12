@@ -23,7 +23,7 @@ router.get("/", function(req, res){
 // })
 
 router.post('/search', function(req, res){
-  Yelp.search(req.body.city, req.body.state);
+  Yelp.search(req.body.address, req.body.city, req.body.state);
 })
 
 module.exports = router;

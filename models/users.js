@@ -1,5 +1,6 @@
 module.exports = function(sequelize, DataTypes){
   var Users = sequelize.define("Users", {
+    // timestamps: false,
     firstName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -16,7 +17,7 @@ module.exports = function(sequelize, DataTypes){
       type: DataTypes.STRING,
       allowNull: false
     }
-  });
+  }, {timestamps: false});
 
   Users.associate = function(models){
     Users.hasMany(models.Restaurant, {

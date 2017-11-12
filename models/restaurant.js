@@ -27,8 +27,16 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [5, 5]
       }
+    },
+    lat: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    long: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
-  });
+  }, {timestamps: false});
 
   Restaurant.associate = function(models){
     Restaurant.belongsTo(models.Users, {
