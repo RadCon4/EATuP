@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [5, 5]
       }
     }
-  });
+  }, {timestamps: false});
 
   Restaurant.associate = function(models){
     Restaurant.belongsTo(models.Users, {

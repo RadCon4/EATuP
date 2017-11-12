@@ -18,8 +18,8 @@ var term = 'Restaurants';
 var searchLimit = 10;
 var restaurantType = "burgers";
 
-exports.search = function(city, state) {
-  let searchLocation = `${city}, ${state}`;
+exports.search = function(address, city, state) {
+  let searchLocation = `${address} ${city}, ${state}`;
   const searchRequest = {
     term: term + ', ' + restaurantType,
     // location by address below
