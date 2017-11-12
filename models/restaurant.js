@@ -27,6 +27,14 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [5, 5]
       }
+    },
+    lat: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    long: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {timestamps: false});
 
