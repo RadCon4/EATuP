@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    function initGeolocation()
+    {
+      if( navigator.geolocation )
+      {
+              // Call getCurrentPosition with success and failure callbacks
+              navigator.geolocation.getCurrentPosition( success, fail );
+            }
+            else
+            {
+              alert("Sorry, your browser does not support geolocation services.");
+            }
+          }
+          var map;
+          function success(position)
+          {
+           // Define the coordinates as a Google Maps LatLng Object
+           var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+           console.log(position.coords.latitude);
+           console.log(position.coords.longitude);
+
+         }
+         function fail()
+         {
+              // Could not obtain location
+            }
+
+    //Request places from Google
+    /* function placesRequest(title,latlng,radius,types,icon)
+    {
+      //Parameters for our places request
+      var request = {
+        location: latlng,
+        radius: radius,
+        types: types
+      };
+      //Make the service call to google
+      var callPlaces = new google.maps.places.PlacesService(map);
+      callPlaces.search(request, function(results,status){
+        //trace what Google gives us back
+        $.each(results, function(i,place){
+          var placeLoc = place.geometry.location;
+           var thisplace = new google.maps.Marker({
+             map: map,
+             position: place.geometry.location,
+             icon: icon,
+             title: place.name
+           });
+        })
+      });
+    
+      
+    }
+    */
+
+  </script>
+
+  <title>EATuP TEST PAGE</title>
+</head>
+<body onload="initGeolocation();">
+  <div style="position:absolute; width:380px; height: 100%; overflow:auto; float:left; padding-left:10px; padding-right:10px;">
+  </div>
+  <div class="container">
+    <h2 id="text-center">Enter Location: </h2>
+    <form id="location-form">
+      <input type="text" id="location-input" class="form-control form-control-lg">
+      <br>
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+    <div class="card-block" id="formatted-address"></div>
+    <div class="card-block" id="address-components"></div>
+    <div class="card-block" id="geometry"></div>
+  </div>
+
+  <script type="text/javascript">
+    // Call Geocode
+    //geocode();
+    // Get location form
+    var locationForm = document.getElementById('location-form');
+    // Listen for submiot
+    locationForm.addEventListener('submit', geocode);
+    function geocode(e){
+      // Prevent actual submit
+      e.preventDefault();
+      var location = document.getElementById('location-input').value;
+      axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+        params:{
+          address:location,
+          key:'AIzaSyC_nTVvqzEckQ6WzQmCV_POw6a80BmOQPo'
+        }
+      })
+      .then(function(response){
+        // Log full response
+        console.log(response.data.results[0].geometry.location.lat, response.data.results[0].geometry.location.lng);
+        // Formatted Address
+        var formattedAddress = response.data.results[0].formatted_address;
+        var formattedAddressOutput = `
+        <ul class="list-group">
+          <li class="list-group-item">${formattedAddress}</li>
+        </ul>
+        `;
+        // Address Components
+        var addressComponents = response.data.results[0].address_components;
+        var addressComponentsOutput = '<ul class="list-group">';
+        for(var i = 0;i < addressComponents.length;i++){
+          addressComponentsOutput += `
+          <li class="list-group-item"><strong>${addressComponents[i].types[0]}</strong>: ${addressComponents[i].long_name}</li>
+          `;
+        }
+        addressComponentsOutput += '</ul>';
+        // Geometry
+        var lat = response.data.results[0].geometry.location.lat;
+        var lng = response.data.results[0].geometry.location.lng;
+        var geometryOutput = `
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Latitude</strong>: ${lat}</li>
+          <li class="list-group-item"><strong>Longitude</strong>: ${lng}</li>
+        </ul>
+        `;
+        console.log(lat);
+        console.log(lng);
+        // Output to app
+        document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
+        document.getElementById('address-components').innerHTML = addressComponentsOutput;
+        document.getElementById('geometry').innerHTML = geometryOutput;
+      })
+      .catch(function(error){
+        console.log(error);
+      });
+    }
+
+    // yelp fusion code
+
+
+    'use strict';
+
+const yelp = require('yelp-fusion');
+
+// GET https://api.yelp.com/v3/businesses/search
+
+// Place holders for Yelp Fusion's OAuth 2.0 credentials. Grab them
+// from https://www.yelp.com/developers/v3/manage_app
+const clientId = '_u-LRtlNR1jJH7FNAbopbg';
+const clientSecret = 'dZrsXV5VSmygDndCZ4WGZST0SZwrDJab2KlgdMIqpdT8dpQOoyE8g1mrVLZAsMyN';
+
+var location = "Richardson, TX";
+var searchLat = 32.998702;
+var searchLong = -96.698551;
+var searchRadius = 1600;
+// searchRadius is in meters, will need to convert
+var term = 'Restaurants';
+var searchLimit = 10;
+var restaurantType = "burgers";
+
+const searchRequest = {
+  term: term + ', ' + restaurantType,
+  // location by address below
+  // location: location,
+  // location by lat/long below
+  location: searchLat + ', ' + searchLong,
+  limit: searchLimit,
+  radius_filter: searchRadius
+};
+
+yelp.accessToken(clientId, clientSecret).then(response => {
+  const client = yelp.client(response.jsonBody.access_token);
+
+  client.search(searchRequest).then(response => {
+    const Results = response.jsonBody.businesses;
+    const prettyJson = JSON.stringify(Results, null, 4);
+    console.log(prettyJson);
+  });
+}).catch(e => {
+  console.log(e);
+});
+
+ /*
+ code below is for an array of the values we would like
+ 
+    [
+  response.jsonBody.businesses.name,
+  response.jsonBody.businesses.snippet_text,
+  response.jsonBody.businesses.image_url,
+  response.jsonBody.businesses.url,
+  response.jsonBody.businesses.is_closed,
+  response.jsonBody.businesses.price,
+  response.jsonBody.businesses.display_phone,
+  response.jsonBody.businesses.location.address,
+  response.jsonBody.businesses.distance,
+  response.jsonBody.businesses.reservation_url
+    ];
+    */
+  </script>
+</body>
+</html>
