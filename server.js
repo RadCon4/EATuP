@@ -27,6 +27,8 @@ app.use(bp.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use("/", routering)
 app.use("/add", routering);
+app.use("/search", routering);
+app.use("/all", routering);
 
 db.sequelize.sync({force: false}).then(function(){
   app.listen(PORT, function(){

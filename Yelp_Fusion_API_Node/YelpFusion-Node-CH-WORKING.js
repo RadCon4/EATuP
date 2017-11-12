@@ -18,7 +18,7 @@ var term = 'Restaurants';
 var searchLimit = 10;
 var restaurantType = "burgers";
 
-exports.search = function(address, city, state) {
+exports.search = function(address, city, state, cb) {
   let searchLocation = `${address} ${city}, ${state}`;
   const searchRequest = {
     term: term + ', ' + restaurantType,
@@ -36,6 +36,7 @@ exports.search = function(address, city, state) {
       const Results = response.jsonBody.businesses;
       const prettyJson = JSON.stringify(Results, null, 4);
       console.log(prettyJson);
+      cb(prettyJson);
     });
   }).catch(e => {
     console.log(e);
