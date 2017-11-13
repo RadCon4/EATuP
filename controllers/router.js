@@ -23,8 +23,9 @@ router.get("/", function(req, res){
 //   res.redirect("/");
 // })
 
-router.post('/search', function(req, res){
-  Yelp.search(req.body.address, req.body.city, req.body.state, function(results){
+router.get('/search/:address/:city/:state', function(req, res){
+  console.log(req.params)
+  Yelp.search(req.params.address, req.params.city, req.params.state, function(results){
     res.send(results);
   });
 });
