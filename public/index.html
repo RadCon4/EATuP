@@ -24,6 +24,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 
+    let results = {};
+
     function addLoading(){
       let image = $('<img>');
       image.attr('src', "https://gifimage.net/wp-content/uploads/2017/08/loading-animated-gif-22.gif");
@@ -32,11 +34,19 @@
       $('#name').text("");
       $('#price').text("");
       $('#distance').text("");
+      $('#select-btn').remove();
     }
 
     function removeLoading(){
       $('#loading').remove()
     }
+
+    function addResultsButton(){
+      let btn = $('<button>');
+      btn.text("let's go!");
+      btn.attr('id', 'select-btn');
+      $('.result').append(btn);
+    };
 
     function fillResult(result){
       removeLoading();
@@ -45,6 +55,7 @@
       $('#name-link').attr('href', result.url);
       $('#price').text(result.price);
       $('#distance').text(`${distance} miles`);
+      addResultsButton();
     }
 
     $('#submit').on('click', function(){
@@ -54,8 +65,9 @@
       address = address.replace(/\s+/g, "").toLowerCase();
       addLoading();
       $.get(`/search/${address}`, function(data){
-        let results = JSON.parse(data);
-        fillResult(results[0]);
+        results[currentChoice] = 0;
+        results[list] = JSON.parse(data);
+        fillResult(results.list[results.currentChoice]);
       });
     });
 </script>
