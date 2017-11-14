@@ -4,28 +4,70 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>EATup</title>
+  <link rel="stylesheet" href="/css/master.css">
 </head>
 <body>
-  <h1>Hello!</h1>
-  <h4>Welcome to Eatup!</h4>
+  <h1>EATup</h1>
+  <h4>food . friends . fast</h4>
   <form action="/" method="get">
-    <input type="text" name="address" placeholder="address" id="address">
-    <input type="text" name="city" placeholder="city" id="city">
-    <input type="text" name="state" placeholder="state" id="state">
-    <input type="number" name="zipcode" placeholder="zip code" id="zipcode">
+    <input type="text" name="address" placeholder="location" id="address">
   </form>
-  <button type="button" name="button" id="submit">Submit</button>
+  <button type="button" name="button" id="submit">FIND FOOD</button>
+  <br><br>
+  <div class="result">
+    <a href="#" id="name-link"><h3 id="name"></h3></a>
+    <h5 id="distance"></h5>
+    <h5 id="price"></h5>
+  </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script type="text/javascript">
+
+    let results = {};
+
+    function addLoading(){
+      let image = $('<img>');
+      image.attr('src', "https://gifimage.net/wp-content/uploads/2017/08/loading-animated-gif-22.gif");
+      image.attr('id', 'loading');
+      $('.result').prepend(image);
+      $('#name').text("");
+      $('#price').text("");
+      $('#distance').text("");
+      $('#select-btn').remove();
+    }
+
+    function removeLoading(){
+      $('#loading').remove()
+    }
+
+    function addResultsButton(){
+      let btn = $('<button>');
+      btn.text("let's go!");
+      btn.attr('id', 'select-btn');
+      $('.result').append(btn);
+    };
+
+    function fillResult(result){
+      removeLoading();
+      let distance = (result.distance/1600).toFixed(2);
+      $('#name').text(result.name);
+      $('#name-link').attr('href', result.url);
+      $('#price').text(result.price);
+      $('#distance').text(`${distance} miles`);
+      addResultsButton();
+    }
+
     $('#submit').on('click', function(){
-      var city = $('#city').val().trim();
-      var state = $('#state').val().trim();
+      $('.result').css('visibility', 'visible');
       var address = $('#address').val().trim();
+      $('#address').val("");
       address = address.replace(/\s+/g, "").toLowerCase();
-      $.get(`/search/${address}/${city}/${state}`, function(data){
-        console.log(data);
+      addLoading();
+      $.get(`/search/${address}`, function(data){
+        results.currentChoice = 0;
+        results.list = JSON.parse(data);
+        fillResult(results.list[results.currentChoice]);
       });
     });
 </script>
