@@ -1,0 +1,63 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Node Authentication</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		body 		{ padding-top:80px; word-wrap:break-word; background-color: #6BBAA7;}
+		 .text-center{
+        background-color: #6C648B;
+        text-color: #white
+        }   
+        .jumbotron h1{
+        color: white;
+        }
+        .jumbotron p{
+        color: white;
+        }
+	</style>
+</head>
+<body>
+<div class="container">
+
+	<div class="page-header text-center">
+		<h1><span class="fa fa-cutlery"></span> Your Restaurant List!</h1>
+		<a href="/logout" class="btn btn-warning btn-sm">Logout</a>
+	</div>
+
+	<div class="row">
+
+		<!-- LOCAL INFORMATION -->
+		<div class="col-sm-6">
+			<div class="well">
+				<h3><span class="fa fa-user"></span> Your List</h3>
+
+					<p>
+						<strong>User</strong>: <%= user.username %><br>
+						<strong>Restaurants</strong>* <%= user.restaurants %><br>
+<!-- get this for each restaurant on their list
+<ul>
+    <% drinks.forEach(function(drink) { %>
+        <li><%= drink.name %> - <%= drink.drunkness %></li>
+    <% }); %>
+</ul>
+
+example website for looping in EJS
+https://scotch.io/tutorials/use-ejs-to-template-your-node-application
+-->
+
+
+<!-- commented password out 
+						<strong>password</strong>: <%= user.password %>-->
+					</p>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>
+</body>
+</html>
