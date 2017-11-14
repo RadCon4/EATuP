@@ -1,0 +1,13 @@
+.result, .result-loading {
+  text-align: center;
+  visibility: hidden;
+}
+
+.result > a, .result > h3 {
+  text-decoration: none;
+  color: gray;
+}
+
+.result > h5 {
+  color: lightgray;
+}
