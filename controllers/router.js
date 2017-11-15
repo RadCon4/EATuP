@@ -24,7 +24,6 @@ router.get("/random", function(req, res){
 // })
 
 router.get('/search/:address', function(req, res){
-  console.log(req.params)
   Yelp.search(req.params.address, function(results){
     res.send(results);
   });

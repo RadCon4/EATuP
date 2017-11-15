@@ -42,8 +42,8 @@ exports.search = function(address, cb) {
     client.search(searchRequest).then(response => {
       const Results = response.jsonBody.businesses;
       const prettyJson = JSON.stringify(Results, null, 4);
-      if (prettyJson.length > 0) {
-        console.log(prettyJson);
+      console.log(Results.length);
+      if (Results.length > 0) {
         cb(prettyJson);
       }
       else {
