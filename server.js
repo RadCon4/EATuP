@@ -1,6 +1,8 @@
 var express = require("express"),
     bodyParser = require("body-parser"),
     app = express();
+    port = process.env.PORT || 1337
+    ip = process.env.IP
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
@@ -34,6 +36,6 @@ app.get("/restaurants/new", function(req, res) {
     res.render("new.ejs");
 });
 
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(port, ip, function(){
     console.log("the server is connected");
 });
