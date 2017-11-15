@@ -1,6 +1,7 @@
 'use strict';
 
 const yelp = require('yelp-fusion');
+const categories = require('./categories.js');
 
 // GET https://api.yelp.com/v3/businesses/search
 
@@ -12,13 +13,19 @@ const clientSecret = 'dZrsXV5VSmygDndCZ4WGZST0SZwrDJab2KlgdMIqpdT8dpQOoyE8g1mrVL
 // var location = "Richardson, TX";
 var searchLat = 32.998702;
 var searchLong = -96.698551;
-var searchRadius = 1600;
+var searchRadius = 8050;
 // searchRadius is in meters, will need to convert
 var term = 'Restaurants';
-var searchLimit = 10;
-var restaurantType = "burgers";
+var searchLimit = 50;
+
+function getCategory(arr){
+  let randomNum = Math.floor(Math.random() * arr.length);
+  return arr[randomNum];
+}
 
 exports.search = function(address, cb) {
+  let restaurantType = getCategory(categories);
+  console.log(restaurantType);
   const searchRequest = {
     term: term + ', ' + restaurantType,
     // location by address below
@@ -26,7 +33,8 @@ exports.search = function(address, cb) {
     // location by lat/long below
     // location: searchLat + ', ' + searchLong,
     limit: searchLimit,
-    radius_filter: searchRadius
+    // radius_filter: searchRadius
+    radius: searchRadius
   };
   yelp.accessToken(clientId, clientSecret).then(response => {
     const client = yelp.client(response.jsonBody.access_token);
@@ -34,8 +42,13 @@ exports.search = function(address, cb) {
     client.search(searchRequest).then(response => {
       const Results = response.jsonBody.businesses;
       const prettyJson = JSON.stringify(Results, null, 4);
-      console.log(prettyJson);
-      cb(prettyJson);
+      if (prettyJson.length > 0) {
+        console.log(prettyJson);
+        cb(prettyJson);
+      }
+      else {
+        exports.search(address, cb);
+      }
     });
   }).catch(e => {
     console.log(e);

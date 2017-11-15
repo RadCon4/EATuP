@@ -65,8 +65,8 @@
       address = address.replace(/\s+/g, "").toLowerCase();
       addLoading();
       $.get(`/search/${address}`, function(data){
-        results.currentChoice = 0;
         results.list = JSON.parse(data);
+        results.currentChoice = Math.floor(Math.random() * results.list.length);
         fillResult(results.list[results.currentChoice]);
       });
     });
