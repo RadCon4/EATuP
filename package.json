@@ -1,0 +1,37 @@
+{
+  "name": "project-2---eatup",
+  "version": "1.0.0",
+  "description": "This is Andy Montenegro's, Brett Fuller's, and Conrad Harrison's Project 2 GitHub Repo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RadCon4/Project-2---EATuP.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RadCon4/Project-2---EATuP/issues"
+  },
+  "homepage": "https://github.com/RadCon4/Project-2---EATuP#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "geolib": "^2.0.24",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.4.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^4.22.6",
+    "twilio": "^3.9.2",
+    "yelp-fusion": "^1.0.3"
+  }
+}
