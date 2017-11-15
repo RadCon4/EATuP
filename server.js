@@ -37,5 +37,5 @@ app.get("/restaurants/new", function(req, res) {
 });
 
 app.listen(port, ip, function(){
-    console.log("the server is connected");
+    console.log("the server is connected to the port 1337");
 });
