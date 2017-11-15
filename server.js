@@ -106,12 +106,12 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-const routers = require('./controllers/router.js');
-
-app.use("/", routers)
-app.use("/add", routers);
-app.use("/search", routers);
-app.use("/all", routers);
+// const routers = require('./controllers/router.js');
+//
+// app.use("/", routers)
+// app.use("/add", routers);
+// app.use("/search", routers);
+// app.use("/all", routers);
 
 // launch ======================================================================
 app.listen(port);
