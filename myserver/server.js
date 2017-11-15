@@ -14,7 +14,7 @@ var restaurants = [
     ];
     
 app.get("/", function(req, res){
-    res.render("landing");
+    res.redirect("index");
 });
 
 app.get("/restaurants", function(req, res){
