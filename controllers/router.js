@@ -4,7 +4,7 @@ const Restaurant = require('../models/restaurant.js');
 const Yelp = require('../Yelp_Fusion_API_Node/YelpFusion-Node-CH-WORKING.js')
 const path = require('path');
 
-router.get("/", function(req, res){
+router.get("/random", function(req, res){
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
@@ -24,14 +24,13 @@ router.get("/", function(req, res){
 // })
 
 router.get('/search/:address', function(req, res){
-  console.log(req.params)
   Yelp.search(req.params.address, function(results){
     res.send(results);
   });
 });
 
-router.get('/all', function(req, res){
-  res.sendFile(path.join(__dirname, "../public/results.html"));
-});
+// router.get('/all', function(req, res){
+//   res.sendFile(path.join(__dirname, "../public/results.html"));
+// });
 
 module.exports = router;

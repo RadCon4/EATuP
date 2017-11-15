@@ -10,7 +10,7 @@
 <body>
   <h1>EATup</h1>
   <h4>food . friends . fast</h4>
-  <form action="/" method="get">
+  <form action="/random" method="get">
     <input type="text" name="address" placeholder="location" id="address">
   </form>
   <button type="button" name="button" id="submit">FIND FOOD</button>
@@ -65,8 +65,8 @@
       address = address.replace(/\s+/g, "").toLowerCase();
       addLoading();
       $.get(`/search/${address}`, function(data){
-        results.currentChoice = 0;
         results.list = JSON.parse(data);
+        results.currentChoice = Math.floor(Math.random() * results.list.length);
         fillResult(results.list[results.currentChoice]);
       });
     });

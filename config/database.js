@@ -1,4 +1,5 @@
 // config/database.js
+
 module.exports = {
     'connection': {
         'host': 'mna97msstjnkkp7h.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',

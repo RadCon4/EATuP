@@ -10,7 +10,7 @@
         }
         .text-center{
         text-color: #white
-        }   
+        }
         .form-group{
         color: white;
         }
@@ -38,19 +38,19 @@
 						<strong>User</strong>: <%= user.username %><br>
 						<strong>Restaurants</strong>* <%= user.restaurants %><br>
 <% /* %>
-get this for each restaurant on their list 
- <ul> 
-    <% drinks.forEach(function(drink) { %> 
+get this for each restaurant on their list
+ <ul>
+    <% drinks.forEach(function(drink) { %>
          <li><%= drink.name %> - <%= drink.drunkness %></li> -->
-    <% }); %> 
- </ul> 
+    <% }); %>
+ </ul>
 
- example website for looping in EJS 
- https://scotch.io/tutorials/use-ejs-to-template-your-node-application 
+ example website for looping in EJS
+ https://scotch.io/tutorials/use-ejs-to-template-your-node-application
 
 
- commented password out  
-						<strong>password</strong>: <%= user.password %> 
+ commented password out
+						<strong>password</strong>: <%= user.password %>
 					</p>
 <% */ %>
 
@@ -60,5 +60,8 @@ get this for each restaurant on their list
 	</div>
 
 </div>
+
+<button type="button" class="btn btn-lg"><a href="/random">Get Random Restaurant</a></button>
+
 </body>
 </html>
