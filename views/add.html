@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h3>Find and Add Restaurants</h3>
+  <form action="/add" method="get">
+    <input type="text" name="restaurant" placeholder="name of restaurant">
+    <input type="text" name="location" placeholder="restaurant location">
+  </form>
+  <button id="search">Search</button>
+  <div class="results">
+    <table>
+      <thead>
+        <th>Restaurant Name</th>
+        <th>Cuisine</th>
+        <th>Address</th>
+        <th></th>
+      </thead>
+      <div class="table-rows">
+
+      </div>
+    </table>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    // function addLoading(){
+    //   let image = $('<img>');
+    //   image.attr('src', "https://gifimage.net/wp-content/uploads/2017/08/loading-animated-gif-22.gif");
+    //   image.attr('id', 'loading');
+    //   $('.result').prepend(image);
+    //   $('#name').text("");
+    //   $('#price').text("");
+    //   $('#distance').text("");
+    //   $('#select-btn').remove();
+    // }
+    //
+    // function removeLoading(){
+    //   $('#loading').remove()
+    // }
+    //
+    // function fillResult(result){
+    //   removeLoading();
+    //   let distance = (result.distance/1600).toFixed(2);
+    //   $('#name').text(result.name);
+    //   $('#name-link').attr('href', result.url);
+    //   $('#price').text(result.price);
+    //   $('#distance').text(`${distance} miles`);
+    //   addResultsButton();
+    // }
+
+    $('#search').on('click', function(){
+      console.log('searching');
+      // $('.result').css('visibility', 'visible');
+      // var address = $('#address').val().trim();
+      // var restaurant = $('#restaurant').val().trim();
+      // console.log(address, restaurant);
+      // if(address !== "" && restaurant !== ""){
+      //   $('#address').val("");
+      //   $('#restaurant').val("");
+      //   address = address.replace(/\s+/g, "").toLowerCase();
+      //   restaurant = restaurant.replace(/\s+/g, "").toLowerCase();
+      //   addLoading();
+      //   $.get(`/add/${address}/${restaurant}`, function(data){
+      //     let results = JSON.parse(data);
+      //     console.log(results);
+      //   });
+      // }
+      // else {
+      //   $('.error').text('Please enter a location and restaurant');
+      // }
+    });
+</html>

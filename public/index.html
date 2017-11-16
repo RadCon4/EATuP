@@ -15,6 +15,7 @@
   </form>
   <button type="button" name="button" id="submit">FIND FOOD</button>
   <br><br>
+  <h3 class="error">/<h3>
   <div class="result">
     <a href="#" id="name-link"><h3 id="name"></h3></a>
     <h5 id="distance"></h5>
@@ -61,14 +62,19 @@
     $('#submit').on('click', function(){
       $('.result').css('visibility', 'visible');
       var address = $('#address').val().trim();
-      $('#address').val("");
-      address = address.replace(/\s+/g, "").toLowerCase();
-      addLoading();
-      $.get(`/search/${address}`, function(data){
-        results.list = JSON.parse(data);
-        results.currentChoice = Math.floor(Math.random() * results.list.length);
-        fillResult(results.list[results.currentChoice]);
-      });
+      if(address !== ""){
+        $('#address').val("");
+        address = address.replace(/\s+/g, "").toLowerCase();
+        addLoading();
+        $.get(`/search/${address}`, function(data){
+          results.list = JSON.parse(data);
+          results.currentChoice = Math.floor(Math.random() * results.list.length);
+          fillResult(results.list[results.currentChoice]);
+        });
+      }
+      else {
+        $('.error').text('Please enter a location');
+      }
     });
 </script>
 </html>
