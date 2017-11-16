@@ -14,8 +14,8 @@ router.post('/add/restaurant', function(req, res){
     streetAddress: req.body.address,
     city: req.body.city,
     zip: req.body.zipcode,
-    latitude: req.body.lat,
-    longitude: req.body.long,
+    lat: req.body.lat,
+    long: req.body.long,
     UserId: 1
   }).then(function(){
     res.end();
