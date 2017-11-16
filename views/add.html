@@ -17,15 +17,11 @@
   <br><br>
   <div class="result">
     <table>
-      <thead>
+      <tr>
         <th>Restaurant Name</th>
-        <th>Cuisine</th>
         <th>Address</th>
         <th></th>
-      </thead>
-      <div class="table-rows">
-
-      </div>
+      </tr>
     </table>
   </div>
 </body>
@@ -37,10 +33,6 @@
       image.attr('src', "https://gifimage.net/wp-content/uploads/2017/08/loading-animated-gif-22.gif");
       image.attr('id', 'loading');
       $('.result').prepend(image);
-      $('#name').text("");
-      $('#price').text("");
-      $('#distance').text("");
-      $('#select-btn').remove();
     }
 
     function removeLoading(){
@@ -49,12 +41,19 @@
 
     function fillResult(result){
       removeLoading();
-      let distance = (result.distance/1600).toFixed(2);
-      $('#name').text(result.name);
-      $('#name-link').attr('href', result.url);
-      $('#price').text(result.price);
-      $('#distance').text(`${distance} miles`);
-      addResultsButton();
+      for(let i = 0; i < result.length; i++){
+        let row = $('<tr>');
+        let cell = $('<td>');
+        let cell1 = $('<td>');
+        let cell2 = $('<td>');
+        let name = cell.html(`<a href="${result[i].url}">${result[i].name}</a>`);
+        let address = cell1.text(`${result[i].location.display_address[0]} ${result[i].location.display_address[1]}`);
+        let button = cell2.html(`<button class='btn btn-secondary'>+</button>`);
+        row.append(name);
+        row.append(address);
+        row.append(button);
+        $('table').append(row);
+      }
     }
 
     $('#submit').click(function(){
@@ -72,6 +71,7 @@
         $.get(`/add/${address}/${restaurant}`, function(data){
           let results = JSON.parse(data);
           console.log(results);
+          fillResult(results);
         });
       }
       else {
