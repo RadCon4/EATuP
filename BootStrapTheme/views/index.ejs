@@ -1,0 +1,38 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Node Authentication</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<style>
+		body 		{ padding-top:80px; background-image: url("http://www.ideocolab.com/assets/images/food_head.jpg"); background-repeat: no-repeat;
+        }
+        .text-center{
+        background-color: rgba(211, 211, 211, 0.5);
+        }   
+        .jumbotron h1{
+        color: #CC5500;
+        }
+        .btn{
+        color: black;
+        }
+        .jumbotron p{
+        color: white;
+        }
+       
+       </style>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1><span class="fa fa-cutlery"></span> Welcome to EATuP!</h1>
+
+            <p>Please Login or Signup to see or create your restaurant list:</p>
+
+            <a href="/login" class="btn btn-warning"><span class="fa fa-user"></span> Login </a>
+            <a href="/signup" class="btn btn-warning"><span class="fa fa-user"></span> Signup </a>
+        </div>
+    </div>
+</body>
+</html>
