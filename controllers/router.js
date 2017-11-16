@@ -5,7 +5,7 @@ const Yelp = require('../Yelp_Fusion_API_Node/YelpFusion-Node-CH-WORKING.js')
 const path = require('path');
 
 router.get("/random", function(req, res){
-  res.sendFile(path.join(__dirname, "../views/index.html"));
+  res.sendFile(path.join(__dirname, "../views/restaurantPage.html"));
 });
 
 router.post('/add/restaurant', function(req, res){
