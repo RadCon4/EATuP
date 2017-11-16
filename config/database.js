@@ -7,7 +7,7 @@ module.exports = {
         'password': 'woxc0lt5dsuttc1j'
     },
 	'database': 'e0a737o4nssgt75u',
-    'users_table': 'users'
+    'users_table': 'Users'
 };
 
 // module.exports = {
