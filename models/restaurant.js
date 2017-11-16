@@ -30,11 +30,11 @@ module.exports = function(sequelize, DataTypes) {
         len: [5, 5]
       }
     },
-    lat: {
+    latitude: {
       type: DataTypes.DOUBLE,
       allowNull: false
     },
-    long: {
+    longitude: {
       type: DataTypes.DOUBLE,
       allowNull: false
     }
