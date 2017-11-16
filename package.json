@@ -1,56 +1,37 @@
 {
-  "title": "Grayscale",
-  "name": "startbootstrap-grayscale",
-  "version": "4.0.0-beta.2",
-  "description": "A grayscale one page HTML theme for Bootstrap.",
-  "keywords": [
-    "css",
-    "sass",
-    "html",
-    "responsive",
-    "theme",
-    "template"
-  ],
-  "homepage": "https://startbootstrap.com/template-overviews/grayscale",
-  "bugs": {
-    "url": "https://github.com/BlackrockDigital/startbootstrap-grayscale/issues",
-    "email": "feedback@startbootstrap.com"
+  "name": "project-2---eatup",
+  "version": "1.0.0",
+  "description": "This is Andy Montenegro's, Brett Fuller's, and Conrad Harrison's Project 2 GitHub Repo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "license": "MIT",
-  "author": "Start Bootstrap",
-  "contributors": [
-    "David Miller (http://davidmiller.io/)"
-  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/BlackrockDigital/startbootstrap-grayscale.git"
+    "url": "git+https://github.com/RadCon4/Project-2---EATuP.git"
   },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RadCon4/Project-2---EATuP/issues"
+  },
+  "homepage": "https://github.com/RadCon4/Project-2---EATuP#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.18.2",
-    "bootstrap": "^4.0.0-beta.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "font-awesome": "4.7.0",
-    "jquery": "^3.2.1",
-    "jquery.easing": "^1.4.1",
+    "geolib": "^2.0.24",
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
-    "mysql2": "^1.5.0",
+    "mysql2": "^1.4.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "save": "^2.3.1"
-  },
-  "devDependencies": {
-    "browser-sync": "2.18.13",
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "3.9.0",
-    "gulp-header": "1.8.9",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-uglify": "3.0.0"
+    "sequelize": "^4.22.6",
+    "twilio": "^3.9.2",
+    "yelp-fusion": "^1.0.3"
   }
 }
