@@ -55,6 +55,37 @@ exports.search = function(address, cb) {
   });
 };
 
+exports.searchRestaurant = function(address, restaurant, cb) {
+  console.log('searching...');
+  const searchRequest = {
+    term: term + ', ' + restaurant,
+    // location by address below
+    location: address,
+    // location by lat/long below
+    // location: searchLat + ', ' + searchLong,
+    limit: 10,
+    // radius_filter: searchRadius
+    radius: searchRadius
+  };
+  yelp.accessToken(clientId, clientSecret).then(response => {
+    const client = yelp.client(response.jsonBody.access_token);
+
+    client.search(searchRequest).then(response => {
+      const Results = response.jsonBody.businesses;
+      const prettyJson = JSON.stringify(Results, null, 4);
+      console.log(Results.length);
+      if (Results.length > 0) {
+        cb(prettyJson);
+      }
+      else {
+        cb('Unable to locate restaurant.')
+      }
+    });
+  }).catch(e => {
+    console.log(e);
+  });
+};
+
  /*
  code below is for an array of the values we would like
 
