@@ -47,9 +47,10 @@
         let cell = $('<td>');
         let cell1 = $('<td>');
         let cell2 = $('<td>');
+        let streetAddress = `${result[i].location.display_address[0]} ${result[i].location.display_address[1]}`;
         let name = cell.html(`<a href="${result[i].url}">${result[i].name}</a>`);
-        let address = cell1.text(`${result[i].location.display_address[0]} ${result[i].location.display_address[1]}`);
-        let button = cell2.html(`<button class='btn btn-secondary' id='addBtn'>+</button>`);
+        let address = cell1.text(streetAddress);
+        let button = cell2.html(`<button class='btn btn-secondary addBtn' rest-name="${result[i].name}" city='${result[i].location.city}' zip='${result[i].location.zip_code}' address='${result[i].location.address1}' lat='${result[i].coordinates.latitude}' long='${result[i].coordinates.longitude}'>+</button>`);
         row.append(name);
         row.append(address);
         row.append(button);
@@ -78,5 +79,17 @@
         });
       }
     });
+
+    $(document).on('click', '.addBtn', function(){
+      let restName = $(this).attr('rest-name');
+      let restCity = $(this).attr('city');
+      let zip = $(this).attr('zip');
+      let restAddress = $(this).attr('address');
+      let latitude = $(this).attr('lat');
+      let longitude = $(this).attr('long');
+      $.post('/add/restaurant', {restaurantName:restName,city:restCity,zipcode:zip,address:restAddress,lat:latitude, long:longitude}).done(function(data){
+        console.log('POSTed data');
+      });
+    })
     </script>
 </html>

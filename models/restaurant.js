@@ -1,5 +1,7 @@
+const Sequelize = require('sequelize');
+
 module.exports = function(sequelize, DataTypes) {
-  var Restaurant = sequelize.define("Restaurant", {
+  var Restaurants = sequelize.define("Restaurants", {
     restaurantName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -29,21 +31,21 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     lat: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DOUBLE,
       allowNull: false
     },
     long: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DOUBLE,
       allowNull: false
     }
   }, {timestamps: false});
 
-  Restaurant.associate = function(models){
-    Restaurant.belongsTo(models.Users, {
+  Restaurants.associate = function(models){
+    Restaurants.belongsTo(models.Users, {
       foreignKey: {
         allowNull: false
       }
     });
   };
-  return Restaurant;
+  return Restaurants;
 };
