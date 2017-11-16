@@ -63,7 +63,7 @@ exports.searchRestaurant = function(address, restaurant, cb) {
     location: address,
     // location by lat/long below
     // location: searchLat + ', ' + searchLong,
-    limit: searchLimit,
+    limit: 10,
     // radius_filter: searchRadius
     radius: searchRadius
   };

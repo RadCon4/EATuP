@@ -27,7 +27,7 @@ router.get("/add", function(req, res){
   res.sendFile(path.join(__dirname, "../views/add.html"));
 });
 
-router.get("/add/:address/:restaurant", function(){
+router.get("/add/:address/:restaurant", function(req, res){
   Yelp.searchRestaurant(req.params.address, req.params.restaurant, function(results){
     res.send(results);
   });
