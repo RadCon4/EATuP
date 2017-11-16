@@ -13,7 +13,8 @@
     <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="../public/css/grayscale.css" rel="stylesheet">
+    <link href="/css/grayscale.css" rel="stylesheet">
+    <link href="/css/master.css" rel="stylesheet">
 </head>
 <body class="restaurantPageBody">
 <div class="text-center">
@@ -26,7 +27,7 @@
   <button type="button" name="button" id="submit" class="btn btn-warning">Search</button>
    <p class="profileLink">Head back to your <a href="/profile">profile</a> page.</p>
     <div class="result">
-    <table>
+    <table class="table">
       <tr>
         <th>Restaurant Name</th>
         <th>Address</th>
@@ -59,7 +60,7 @@
         let cell1 = $('<td>');
         let cell2 = $('<td>');
         let streetAddress = `${result[i].location.display_address[0]} ${result[i].location.display_address[1]}`;
-        let name = cell.html(`<a href="${result[i].url}">${result[i].name}</a>`);
+        let name = cell.html(`<a class="restURL" href="${result[i].url}">${result[i].name}</a>`);
         let address = cell1.text(streetAddress);
         let button = cell2.html(`<button class='btn btn-secondary addBtn' rest-name="${result[i].name}" city='${result[i].location.city}' zip='${result[i].location.zip_code}' address='${result[i].location.address1}' lat='${result[i].coordinates.latitude}' long='${result[i].coordinates.longitude}'>+</button>`);
         row.append(name);

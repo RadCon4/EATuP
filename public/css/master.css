@@ -1,13 +1,15 @@
 .result, .result-loading {
-  text-align: center;
   visibility: hidden;
 }
 
-.result > a, .result > h3 {
-  text-decoration: none;
-  color: gray;
+.table {
+  background-color: #ecf0f1;
 }
 
-.result > h5 {
-  color: lightgray;
+td {
+  font-size: 85%;
+}
+
+.restURL {
+  font-size: 150%;
 }
