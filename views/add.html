@@ -9,6 +9,7 @@
 </head>
 <body>
   <h3>Find and Add Restaurants</h3>
+  <div class='error'></div>
   <form action="/add" method="get">
     <input type="text" name="restaurant" placeholder="name of restaurant" id="restaurant">
     <input type="text" name="address" placeholder="restaurant location" id="address">
@@ -46,9 +47,10 @@
         let cell = $('<td>');
         let cell1 = $('<td>');
         let cell2 = $('<td>');
+        let streetAddress = `${result[i].location.display_address[0]} ${result[i].location.display_address[1]}`;
         let name = cell.html(`<a href="${result[i].url}">${result[i].name}</a>`);
-        let address = cell1.text(`${result[i].location.display_address[0]} ${result[i].location.display_address[1]}`);
-        let button = cell2.html(`<button class='btn btn-secondary'>+</button>`);
+        let address = cell1.text(streetAddress);
+        let button = cell2.html(`<button class='btn btn-secondary addBtn' rest-name="${result[i].name}" city='${result[i].location.city}' zip='${result[i].location.zip_code}' address='${result[i].location.address1}' lat='${result[i].coordinates.latitude}' long='${result[i].coordinates.longitude}'>+</button>`);
         row.append(name);
         row.append(address);
         row.append(button);
@@ -57,12 +59,14 @@
     }
 
     $('#submit').click(function(){
-      console.log('searching');
-      $('.result').css('visibility', 'visible');
       var address = $('#address').val().trim();
       var restaurant = $('#restaurant').val().trim();
-      console.log(address, restaurant);
-      if(address !== "" && restaurant !== ""){
+      if(address.length === 0 || restaurant.length === 0){
+        $('.error').append('<h4 id="error-message">Please enter a location and restaurant</h4>');
+      }
+      else {
+        $('.result').css('visibility', 'visible');
+        $('#error-message').remove()
         $('#address').val("");
         $('#restaurant').val("");
         address = address.replace(/\s+/g, "").toLowerCase();
@@ -74,9 +78,18 @@
           fillResult(results);
         });
       }
-      else {
-        $('.error').text('Please enter a location and restaurant');
-      }
     });
+
+    $(document).on('click', '.addBtn', function(){
+      let restName = $(this).attr('rest-name');
+      let restCity = $(this).attr('city');
+      let zip = $(this).attr('zip');
+      let restAddress = $(this).attr('address');
+      let latitude = $(this).attr('lat');
+      let longitude = $(this).attr('long');
+      $.post('/add/restaurant', {restaurantName:restName,city:restCity,zipcode:zip,address:restAddress,lat:latitude, long:longitude}).done(function(data){
+        console.log('POSTed data');
+      });
+    })
     </script>
 </html>
