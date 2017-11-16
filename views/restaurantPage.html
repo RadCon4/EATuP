@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>EATup</title>
-  <link rel="stylesheet" href="/css/master.css">
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>EATuP User Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/grayscale.css" rel="stylesheet">
 </head>
-<body>
-  <h1>EATup</h1>
-  <h4>food . friends . fast</h4>
+<body class="restaurantPageBody">
+<div class="text-center">
+ <div class="col-lg-8 mx-auto intro-row">
+  <h1 class="brand-heading">Your EATuP Page!</h1>
+  <h3 class="location-text">Enter Your Location!</h3>
   <form action="/random" method="get">
     <input type="text" name="address" placeholder="location" id="address">
   </form>
-  <button type="button" name="button" id="submit">FIND FOOD</button>
+  <button type="button" name="button" id="submit" class="btn btn-warning">FIND FOOD</button>
+  </div>
   <br><br>
-  <h3 class="error">/<h3>
   <div class="result">
     <a href="#" id="name-link"><h3 id="name"></h3></a>
     <h5 id="distance"></h5>
     <h5 id="price"></h5>
   </div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script type="text/javascript">

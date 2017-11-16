@@ -6,25 +6,28 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<style>
-		body        { padding-top:80px; word-wrap:break-word; background-color: #6BBAA7;
+			body        { padding-top:80px; background-image: url("http://www.ideocolab.com/assets/images/food_head.jpg"); background-repeat: no-repeat;
+        color: black;
         }
-        .text-center{
-        text-color: #white
-        }
-        .form-group{
-        color: white;
+        .container{
+        background-color: rgba(211, 211, 211, 0.5);
         }
         h1{
-        color: white;
+        color: #CC5500;
         }
-   	</style>
+        .btn{
+        color: black;
+        }
+          	</style>
 </head>
 <body>
 <div class="container">
 
 	<div class="page-header text-center">
 		<h1><span class="fa fa-cutlery"></span> Your Restaurant List!</h1>
-		<a href="/logout" class="btn btn-warning btn-sm">Logout</a>
+		<a href="/logout" class="btn btn-warning btn-lg">Logout</a>
+    <a href="/random" class="btn btn-warning btn-lg">Get Restaurant</a>
+    <a href="/add" class="btn btn-warning btn-lg">Add Restaurant</a>
 	</div>
 
 	<div class="row">
@@ -61,7 +64,6 @@ get this for each restaurant on their list
 
 </div>
 
-<button type="button" class="btn btn-lg"><a href="/random">Get Random Restaurant</a></button>
 
 </body>
 </html>
