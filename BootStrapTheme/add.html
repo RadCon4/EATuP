@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>EATup</title>
+  <link rel="stylesheet" href="/css/master.css">
+</head>
+<body>
+  <h3>Find and Add Restaurants</h3>
+  <form action="/add" method="get">
+    <input type="text" name="restaurant" placeholder="name of restaurant" id="restaurant">
+    <input type="text" name="address" placeholder="restaurant location" id="address">
+  </form>
+  <button type="button" name="button" id="submit">Search</button>
+  <br><br>
+  <div class="result">
+    <table>
+      <tr>
+        <th>Restaurant Name</th>
+        <th>Address</th>
+        <th></th>
+      </tr>
+    </table>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    function addLoading(){
+      let image = $('<img>');
+      image.attr('src', "https://gifimage.net/wp-content/uploads/2017/08/loading-animated-gif-22.gif");
+      image.attr('id', 'loading');
+      $('.result').prepend(image);
+    }
+
+    function removeLoading(){
+      $('#loading').remove()
+    }
+
+    function fillResult(result){
+      removeLoading();
+      for(let i = 0; i < result.length; i++){
+        let row = $('<tr>');
+        let cell = $('<td>');
+        let cell1 = $('<td>');
+        let cell2 = $('<td>');
+        let name = cell.html(`<a href="${result[i].url}">${result[i].name}</a>`);
+        let address = cell1.text(`${result[i].location.display_address[0]} ${result[i].location.display_address[1]}`);
+        let button = cell2.html(`<button class='btn btn-secondary'>+</button>`);
+        row.append(name);
+        row.append(address);
+        row.append(button);
+        $('table').append(row);
+      }
+    }
+
+    $('#submit').click(function(){
+      console.log('searching');
+      $('.result').css('visibility', 'visible');
+      var address = $('#address').val().trim();
+      var restaurant = $('#restaurant').val().trim();
+      console.log(address, restaurant);
+      if(address !== "" && restaurant !== ""){
+        $('#address').val("");
+        $('#restaurant').val("");
+        address = address.replace(/\s+/g, "").toLowerCase();
+        restaurant = restaurant.replace(/\s+/g, "").toLowerCase();
+        addLoading();
+        $.get(`/add/${address}/${restaurant}`, function(data){
+          let results = JSON.parse(data);
+          console.log(results);
+          fillResult(results);
+        });
+      }
+      else {
+        $('.error').text('Please enter a location and restaurant');
+      }
+    });
+    </script>
+</html>

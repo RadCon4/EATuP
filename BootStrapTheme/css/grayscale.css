@@ -5,11 +5,13 @@
  */
 /* CSS for the restaurant page*/
 
-#result{
+.result{
   color: black;
 }
 
-
+.location-text {
+  color: #CC5500; 
+}
 
 
 /* shared CSS with index and restaurant page */
