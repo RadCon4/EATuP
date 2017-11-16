@@ -9,6 +9,7 @@
 </head>
 <body>
   <h3>Find and Add Restaurants</h3>
+  <div class='error'></div>
   <form action="/add" method="get">
     <input type="text" name="restaurant" placeholder="name of restaurant" id="restaurant">
     <input type="text" name="address" placeholder="restaurant location" id="address">
@@ -48,7 +49,7 @@
         let cell2 = $('<td>');
         let name = cell.html(`<a href="${result[i].url}">${result[i].name}</a>`);
         let address = cell1.text(`${result[i].location.display_address[0]} ${result[i].location.display_address[1]}`);
-        let button = cell2.html(`<button class='btn btn-secondary'>+</button>`);
+        let button = cell2.html(`<button class='btn btn-secondary' id='addBtn'>+</button>`);
         row.append(name);
         row.append(address);
         row.append(button);
@@ -57,12 +58,14 @@
     }
 
     $('#submit').click(function(){
-      console.log('searching');
-      $('.result').css('visibility', 'visible');
       var address = $('#address').val().trim();
       var restaurant = $('#restaurant').val().trim();
-      console.log(address, restaurant);
-      if(address !== "" && restaurant !== ""){
+      if(address.length === 0 || restaurant.length === 0){
+        $('.error').append('<h4 id="error-message">Please enter a location and restaurant</h4>');
+      }
+      else {
+        $('.result').css('visibility', 'visible');
+        $('#error-message').remove()
         $('#address').val("");
         $('#restaurant').val("");
         address = address.replace(/\s+/g, "").toLowerCase();
@@ -73,9 +76,6 @@
           console.log(results);
           fillResult(results);
         });
-      }
-      else {
-        $('.error').text('Please enter a location and restaurant');
       }
     });
     </script>
