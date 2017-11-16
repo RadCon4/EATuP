@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>EATup</title>
-  <link rel="stylesheet" href="/css/master.css">
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  <title>EATup Add Restaurant Page</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/grayscale.css" rel="stylesheet">
 </head>
-<body>
-  <h3>Find and Add Restaurants</h3>
+<body class="restaurantPageBody">
+<div class="text-center">
+ <div class="col-lg-8 mx-auto intro-row">
+  <h1>Find and Add Restaurants</h1>
   <form action="/add" method="get">
     <input type="text" name="restaurant" placeholder="name of restaurant" id="restaurant">
     <input type="text" name="address" placeholder="restaurant location" id="address">
   </form>
-  <button type="button" name="button" id="submit">Search</button>
+  <button type="button" name="button" id="submit" class="btn btn-warning">Search</button>
   <br><br>
   <div class="result">
     <table>
@@ -23,6 +33,8 @@
         <th></th>
       </tr>
     </table>
+  </div>
+  </div>
   </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -46,9 +58,10 @@
         let cell = $('<td>');
         let cell1 = $('<td>');
         let cell2 = $('<td>');
+        let streetAddress = `${result[i].location.display_address[0]} ${result[i].location.display_address[1]}`;
         let name = cell.html(`<a href="${result[i].url}">${result[i].name}</a>`);
-        let address = cell1.text(`${result[i].location.display_address[0]} ${result[i].location.display_address[1]}`);
-        let button = cell2.html(`<button class='btn btn-secondary'>+</button>`);
+        let address = cell1.text(streetAddress);
+        let button = cell2.html(`<button class='btn btn-secondary addBtn' rest-name="${result[i].name}" city='${result[i].location.city}' zip='${result[i].location.zip_code}' address='${result[i].location.address1}' lat='${result[i].coordinates.latitude}' long='${result[i].coordinates.longitude}'>+</button>`);
         row.append(name);
         row.append(address);
         row.append(button);
@@ -57,12 +70,14 @@
     }
 
     $('#submit').click(function(){
-      console.log('searching');
-      $('.result').css('visibility', 'visible');
       var address = $('#address').val().trim();
       var restaurant = $('#restaurant').val().trim();
-      console.log(address, restaurant);
-      if(address !== "" && restaurant !== ""){
+      if(address.length === 0 || restaurant.length === 0){
+        $('.error').append('<h4 id="error-message">Please enter a location and restaurant</h4>');
+      }
+      else {
+        $('.result').css('visibility', 'visible');
+        $('#error-message').remove()
         $('#address').val("");
         $('#restaurant').val("");
         address = address.replace(/\s+/g, "").toLowerCase();
@@ -74,9 +89,18 @@
           fillResult(results);
         });
       }
-      else {
-        $('.error').text('Please enter a location and restaurant');
-      }
     });
+
+    $(document).on('click', '.addBtn', function(){
+      let restName = $(this).attr('rest-name');
+      let restCity = $(this).attr('city');
+      let zip = $(this).attr('zip');
+      let restAddress = $(this).attr('address');
+      let latitude = $(this).attr('lat');
+      let longitude = $(this).attr('long');
+      $.post('/add/restaurant', {restaurantName:restName,city:restCity,zipcode:zip,address:restAddress,lat:latitude, long:longitude}).done(function(data){
+        console.log('POSTed data');
+      });
+    })
     </script>
 </html>

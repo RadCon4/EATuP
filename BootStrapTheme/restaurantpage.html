@@ -20,6 +20,7 @@
     <link href="css/grayscale.css" rel="stylesheet">
 </head>
 <body class="restaurantPageBody">
+<div class="text-center">
  <div class="col-lg-8 mx-auto intro-row">
   <h1 class="brand-heading">Your EATuP Page!</h1>
   <h3 class="location-text">Enter Your Location!</h3>
@@ -34,7 +35,7 @@
     <h5 id="distance"></h5>
     <h5 id="price"></h5>
   </div>
-
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -76,14 +77,19 @@
     $('#submit').on('click', function(){
       $('.result').css('visibility', 'visible');
       var address = $('#address').val().trim();
-      $('#address').val("");
-      address = address.replace(/\s+/g, "").toLowerCase();
-      addLoading();
-      $.get(`/search/${address}`, function(data){
-        results.list = JSON.parse(data);
-        results.currentChoice = Math.floor(Math.random() * results.list.length);
-        fillResult(results.list[results.currentChoice]);
-      });
+      if(address !== ""){
+        $('#address').val("");
+        address = address.replace(/\s+/g, "").toLowerCase();
+        addLoading();
+        $.get(`/search/${address}`, function(data){
+          results.list = JSON.parse(data);
+          results.currentChoice = Math.floor(Math.random() * results.list.length);
+          fillResult(results.list[results.currentChoice]);
+        });
+      }
+      else {
+        $('.error').text('Please enter a location');
+      }
     });
 </script>
 </html>
