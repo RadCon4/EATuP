@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use(express.static(__dirname + '/views'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 

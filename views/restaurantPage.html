@@ -18,7 +18,8 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/grayscale.css" rel="stylesheet">
- 
+    <link href="/css/master.css" rel="stylesheet">
+
 </head>
 <body class="restaurantPageBody">
 <div class="text-center">
@@ -46,7 +47,7 @@
 
     function addLoading(){
       let image = $('<img>');
-      image.attr('src', "https://gifimage.net/wp-content/uploads/2017/08/loading-animated-gif-22.gif");
+      image.attr('src', "https://gifimage.net/wp-content/uploads/2017/09/animated-gif-transparent-background-14.gif");
       image.attr('id', 'loading');
       $('.result').prepend(image);
       $('#name').text("");
@@ -63,6 +64,7 @@
       let btn = $('<button>');
       btn.text("let's go!");
       btn.attr('id', 'select-btn');
+      btn.attr('class', 'btn btn-warning');
       $('.result').append(btn);
     };
 
