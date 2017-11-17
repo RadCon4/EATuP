@@ -10,6 +10,11 @@
   color: #cc5500;
 }
 
+#loading {
+  height: 30%;
+  width: 30%;
+}
+
 td {
   font-size: 85%;
 }
