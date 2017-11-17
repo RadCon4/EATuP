@@ -15,6 +15,11 @@
   width: 30%;
 }
 
+#loading-image {
+  height: 15%;
+  width: 15%;
+}
+
 td {
   font-size: 85%;
 }

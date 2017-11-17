@@ -48,7 +48,7 @@
     function addLoading(){
       let image = $('<img>');
       image.attr('src', "https://gifimage.net/wp-content/uploads/2017/09/animated-gif-transparent-background-14.gif");
-      image.attr('id', 'loading');
+      image.attr('id', 'loading-image');
       $('.result').prepend(image);
       $('#name').text("");
       $('#price').text("");
@@ -57,7 +57,7 @@
     }
 
     function removeLoading(){
-      $('#loading').remove()
+      $('#loading-image').remove()
     }
 
     function addResultsButton(){
