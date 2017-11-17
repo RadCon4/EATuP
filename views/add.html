@@ -54,6 +54,7 @@
 
     function fillResult(result){
       removeLoading();
+      $('table').html('<tr><th>Restaurant Name</th><th>Address</th><th></th>');
       for(let i = 0; i < result.length; i++){
         let row = $('<tr>');
         let cell = $('<td>');
