@@ -35,6 +35,7 @@
   <br><br>
   <div class="result">
     <a href="#" id="name-link"><h3 id="name"></h3></a>
+    <h4 id="restAddress"></h4>
     <h5 id="distance"></h5>
     <h5 id="price"></h5>
   </div>
@@ -51,6 +52,7 @@
       image.attr('id', 'loading-image');
       $('.result').prepend(image);
       $('#name').text("");
+      $('#restAddress').text("");
       $('#price').text("");
       $('#distance').text("");
       $('#select-btn').remove();
@@ -69,10 +71,12 @@
     };
 
     function fillResult(result){
+      console.log(result);
       removeLoading();
       let distance = (result.distance/1600).toFixed(2);
       $('#name').text(result.name);
       $('#name-link').attr('href', result.url);
+      $('#restAddress').text(`${result.location.address1} ${result.location.city}`);
       $('#price').text(result.price);
       $('#distance').text(`${distance} miles`);
       addResultsButton();
