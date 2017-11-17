@@ -1,80 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>EATup</title>
-  <link rel="stylesheet" href="/css/master.css">
-</head>
-<body>
-  <h1>EATup</h1>
-  <h4>food . friends . fast</h4>
-  <form action="/random" method="get">
-    <input type="text" name="address" placeholder="location" id="address">
-  </form>
-  <button type="button" name="button" id="submit">FIND FOOD</button>
-  <br><br>
-  <h3 class="error">/<h3>
-  <div class="result">
-    <a href="#" id="name-link"><h3 id="name"></h3></a>
-    <h5 id="distance"></h5>
-    <h5 id="price"></h5>
-  </div>
-</body>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script type="text/javascript">
 
-    let results = {};
+  <head>
 
-    function addLoading(){
-      let image = $('<img>');
-      image.attr('src', "https://gifimage.net/wp-content/uploads/2017/08/loading-animated-gif-22.gif");
-      image.attr('id', 'loading');
-      $('.result').prepend(image);
-      $('#name').text("");
-      $('#price').text("");
-      $('#distance').text("");
-      $('#select-btn').remove();
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    function removeLoading(){
-      $('#loading').remove()
-    }
+    <title>EATuP Home Page</title>
 
-    function addResultsButton(){
-      let btn = $('<button>');
-      btn.text("let's go!");
-      btn.attr('id', 'select-btn');
-      $('.result').append(btn);
-    };
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    function fillResult(result){
-      removeLoading();
-      let distance = (result.distance/1600).toFixed(2);
-      $('#name').text(result.name);
-      $('#name-link').attr('href', result.url);
-      $('#price').text(result.price);
-      $('#distance').text(`${distance} miles`);
-      addResultsButton();
-    }
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
 
-    $('#submit').on('click', function(){
-      $('.result').css('visibility', 'visible');
-      var address = $('#address').val().trim();
-      if(address !== ""){
-        $('#address').val("");
-        address = address.replace(/\s+/g, "").toLowerCase();
-        addLoading();
-        $.get(`/search/${address}`, function(data){
-          results.list = JSON.parse(data);
-          results.currentChoice = Math.floor(Math.random() * results.list.length);
-          fillResult(results.list[results.currentChoice]);
-        });
-      }
-      else {
-        $('.error').text('Please enter a location');
-      }
-    });
-</script>
+    <!-- Custom styles for this template -->
+    <link href="/css/grayscale.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Food.  Friends.  Fast.</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#download">Login</a>
+            </li>
+            <!--
+            COMMENTED OUT EXTRA NAV-LINK
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Random</a>
+            </li>-->
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="masthead">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto intro-row">
+              <h1 class="brand-heading">EATuP</h1>
+              <p class="intro-text">A quick, easy way to decide where you want to eat from places you have been before, or try something completely new in your area, and to include your friends in meeting up!</p>
+              <a href="#about" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>About EATuP</h2>
+            <p>Sometimes, you just can't decide where you want to eat.  Whether you are by yourself or want to get together with friends.  Feel like something familiar, but can't decide?  EATuP allows you to keep track of your favorite places and recommend an option.  Want to try something completely new in your area?  EATuP will give you a recommendation.  Want to include your friends?  Once you have decided on the where, you can input their phone numbers and EATuP will text them with your choice.</p>
+             <!-- Commented out links and text -->
+<!--
+              <a href="http://startbootstrap.com/template-overviews/grayscale/">orem ipsum dolor sit amet, consectetur adipiscing elit.</a>. orem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>orem ipsum dolor sit amet, consectetur adipiscing elit.
+              <a href="http://gratisography.com/">Gratisography</a>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              <a href="http://snazzymaps.com/">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download Section NOW USED FOR LOGIN-->
+    <section id="download" class="download-section content-section text-center">
+      <div class="container">
+        <div class="col-lg-8 mx-auto">
+            <h2><span class="fa fa-cutlery"></span> Welcome to EATuP!</h2>
+
+            <p>Please Login or Signup to see or create your restaurant list:</p>
+
+            <a href="/login" class="btn btn-warning"><span class="fa fa-user"></span> Login </a>
+            <a href="/signup" class="btn btn-warning"><span class="fa fa-user"></span> Signup </a>
+
+<!-- THIS IS THE COMMENTED OUT DOWNLOAD SECTION
+          <h2>Download Grayscale</h2>
+          <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
+          <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a> -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section
+    <section id="contact" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Contact Start Bootstrap</h2>
+            <p>Feel free to leave us a comment on the
+              <a href="http://startbootstrap.com/template-overviews/grayscale/">Grayscale template overview page</a>
+              on Start Bootstrap to give some feedback about this theme!</p>
+            <ul class="list-inline banner-social-buttons">
+              <li class="list-inline-item">
+                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg">
+                  <i class="fa fa-twitter fa-fw"></i>
+                  <span class="network-name">Twitter</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/BlackrockDigital/startbootstrap" class="btn btn-default btn-lg">
+                  <i class="fa fa-github fa-fw"></i>
+                  <span class="network-name">Github</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg">
+                  <i class="fa fa-google-plus fa-fw"></i>
+                  <span class="network-name">Google+</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <!-- Map Section
+    <div id="map"></div>
+
+-->
+    <!-- Footer -->
+    <footer>
+      <div class="container text-center">
+        <p>Copyright &copy; EATuP 2017 - Andy Montenegro, Brett Fuller, Conrad Harrison</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- COMMENTED OUT MAPS-->
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script> -->
+
+    <!-- Custom scripts for this template -->
+    <script src="js/grayscale.js"></script>
+
+  </body>
+
 </html>

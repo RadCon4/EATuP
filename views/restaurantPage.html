@@ -18,7 +18,8 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/grayscale.css" rel="stylesheet">
- 
+    <link href="/css/master.css" rel="stylesheet">
+
 </head>
 <body class="restaurantPageBody">
 <div class="text-center">
@@ -63,6 +64,7 @@
       let btn = $('<button>');
       btn.text("let's go!");
       btn.attr('id', 'select-btn');
+      btn.attr('class', 'btn btn-warning');
       $('.result').append(btn);
     };
 

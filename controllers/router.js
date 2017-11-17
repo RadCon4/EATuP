@@ -4,6 +4,18 @@ const db = require('../models');
 const Yelp = require('../Yelp_Fusion_API_Node/YelpFusion-Node-CH-WORKING.js')
 const path = require('path');
 
+router.get("/", function(req, res){
+  res.sendFile(path.join(__dirname, "../views/indexMain.html"));
+});
+
+router.get("/login", function(req, res){
+  res.render("login");
+});
+
+router.get("/signup", function(req, res){
+  res.render("signup");
+});
+
 router.get("/random", function(req, res){
   res.sendFile(path.join(__dirname, "../views/restaurantPage.html"));
 });

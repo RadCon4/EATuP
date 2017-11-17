@@ -2,6 +2,14 @@
   visibility: hidden;
 }
 
+.result {
+  background-color: rgba(211, 211, 211, 0.5);
+}
+
+#name {
+  color: #cc5500;
+}
+
 .table {
   background-color: #ecf0f1;
 }
