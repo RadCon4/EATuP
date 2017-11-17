@@ -2,16 +2,12 @@
   visibility: hidden;
 }
 
-.result {
+.result, .table {
   background-color: rgba(211, 211, 211, 0.5);
 }
 
 #name {
   color: #cc5500;
-}
-
-.table {
-  background-color: #ecf0f1;
 }
 
 td {
@@ -20,4 +16,5 @@ td {
 
 .restURL {
   font-size: 150%;
+  color: #cc5500;
 }
