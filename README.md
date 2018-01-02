@@ -58,4 +58,4 @@ We would like to incorporate the following functionality in the future:
 #### Collaborators
 ***
 
-This is Andy Montenegro's, Brett Fuller's, and Conrad Harrison's Project 2 GitHub Repo
+Brett Fuller, Conrad Harrison, and Andy Montenegro © 2017. 
